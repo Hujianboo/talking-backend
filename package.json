@@ -1,0 +1,25 @@
+{
+  "name": "talking-backend",
+  "version": "1.0.0",
+  "description": "talking-backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node app",
+    "dev": "nodemon app",
+    "debug": "nodemon --inspect app"
+  },
+  "author": "hujianbo",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-json-error": "^3.1.2",
+    "koa-parameter": "^3.0.1",
+    "koa-router": "^7.4.0",
+    "mongoose": "^5.4.20"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.18.10"
+  }
+}
