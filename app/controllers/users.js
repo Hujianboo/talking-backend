@@ -10,16 +10,23 @@ class UsersCtl {
     ctx.body = user;
   }
   async create(ctx) {
-    console.log(ctx)
     ctx.verifyParams({
       name: { type: 'string', required: true },
+      password: {type: 'string', required: true}
     });
+    const {name} = ctx.request.body;
+    const repeatedUser = await User.findOne({name:name})
+    console.log(repeatedUser);
+    if(repeatedUser){
+      ctx.throw(409,'已存在该用户')
+    }
     const user = await new User(ctx.request.body).save();
     ctx.body = user;
   }
   async update(ctx) {
     ctx.verifyParams({
       name: { type: 'string', required: true },
+      password: { type: 'string', required: true}
     });
     const user = await User.findByIdAndUpdate(ctx.params.id, ctx.request.body);
     if (!user) { ctx.throw(404, '用户不存在'); }

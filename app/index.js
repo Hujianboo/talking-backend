@@ -13,7 +13,7 @@ mongoose.connection.on('error', console.error);
 app.use(error({
   postFormat: (e, { stack, ...rest }) => process.env.NODE_ENV === 'production' ? rest : { stack, ...rest }
 }));
-// app.use(bodyparser());
+app.use(bodyparser());
 app.use(parameter(app));
 routing(app);
 
