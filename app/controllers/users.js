@@ -8,7 +8,12 @@ class UsersCtl {
     console.log(ctx.body);
   }
   async findById(ctx) {
-    const user = await User.findById(ctx.params.id);
+    const { fields } = ctx.query;
+    console.log(fields)
+    const selectFields = fields.split(';').map(f => ' +' + f).join('');
+    console.log(selectFields)
+    const user = await User.findById(ctx.params.id).select(selectFields);
+    // const user = await User.findById(ctx.params.id);
     if (!user) { ctx.throw(404, '用户不存在'); }
     ctx.body = user;
   }
